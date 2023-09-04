@@ -1,6 +1,6 @@
 export const utils = {
-  isNumber: () => {
-    const flag = Array.from(arguments).every(
+  isNumber: (...res) => {
+    const flag = Array.from(res).every(
       (item) => typeof item === "number" && !isNaN(item)
     );
     if (!flag) {
