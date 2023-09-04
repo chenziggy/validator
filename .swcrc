@@ -1,0 +1,15 @@
+{
+  "module": {
+    "type": "es6"
+  },
+  "env": {
+    "targets": "Chrome >= 79"
+  },
+  "jsc": {
+    "parser": {
+      "syntax": "ecmascript",
+      "jsx": false
+    }
+  },
+  "minify": true
+}
