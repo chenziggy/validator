@@ -13,7 +13,6 @@ document.head.appendChild(link)
 
 
 
-
 let callback = (operateType, values, asyncOperate) => {
   console.log(
     `${JSON.stringify(
@@ -82,8 +81,25 @@ const asyncQuery = (params) => {
 };
 
 
+function observe(obj, property, cb) {
+  const __proto__ = Object.getPrototypeOf(obj);
+  if (__proto__.hasOwnProperty(property)) {
+    let descriptor = Object.getOwnPropertyDescriptor(__proto__, property);
+    Object.defineProperty(obj, property, {
+      get: function () {
+        return descriptor.get.apply(this);
+      },
+      set: function () {
+        descriptor.set.apply(this, arguments);
+        if (typeof cb == "function") {
+          cb(this[property])
+        }
+      }
+    });
+  }
+}
 
-function handleModulesValidator() {
+export function handleModulesValidator() {
   const url = window.location.href;
 
   const matchKeys = Object.keys(modules).filter((key) => url.includes(key));
@@ -122,28 +138,6 @@ function handleModulesValidator() {
     });
   }
 }
-
-
-function observe(obj, property, cb) {
-  const __proto__ = Object.getPrototypeOf(obj);
-  if (__proto__.hasOwnProperty(property)) {
-    let descriptor = Object.getOwnPropertyDescriptor(__proto__, property);
-    Object.defineProperty(obj, property, {
-      get: function () {
-        return descriptor.get.apply(this);
-      },
-      set: function () {
-        descriptor.set.apply(this, arguments);
-        if (typeof cb == "function") {
-          cb(this[property])
-        }
-      }
-    });
-  }
-}
-
-
-window.handleModulesValidator;
 
 setTimeout(() => {
   handleModulesValidator()
