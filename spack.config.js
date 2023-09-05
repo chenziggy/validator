@@ -5,25 +5,27 @@ module.exports = config({
     web: __dirname + "/src/index.js",
   },
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/dist/",
+    name: 'index.js'
   },
-  module: {},
   options: {
-    "module": {
-      "type": "es6"
-    },
-    "env": {
+  "env": {
       "targets": "Chrome >= 79"
     },
     "jsc": {
       "parser": {
         "syntax": "ecmascript",
         "jsx": false,
-        "minify": {
-          "unused": false
+        minify: {
+          unused: false,
+        }
+      },
+      transform: {
+        optimizer: {
+          simplify: true
         }
       }
     },
-    "minify": true
+      "minify": true
   }
 });
