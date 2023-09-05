@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "testAll": "jest --watchAll",
     "build": "npx swc src -d dist"
   },
   "keywords": [],
