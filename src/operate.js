@@ -1,29 +1,16 @@
-import {utils } from './utils'
+import { utils } from './utils'
 
-export const operate = {
-  "===": equal,
-  "<": isLessThan,
-  ">": isGreatThan,
-  inRange,
-  "time<": lessThanNMinutes,
-  "time>": greatThanNMinutes,
-  startsWith,
-  jqlb,
-  async: asyncOperateHandler,
-};
-
-
-const equal = (...rest) => {
-  return {res: new Set(rest).size === 1};
+const equal = (...arr) => {
+  return {res: new Set(arr).size === 1};
 };
 
 const isLessThan = function (val, max) {
-  utils.isNumber(arguments);
+  utils.isNumber(val, max);
   return {res: val < max};
 };
 
 const isGreatThan = function (val, min) {
-  utils.isNumber(arguments);
+  utils.isNumber(val, min);
   return { res: val > min };
 };
 
@@ -39,7 +26,7 @@ const jqlb = function (str, subStr) {
 }
 
 const inRange = function (val, min, max) {
-  utils.isNumber(arguments);
+  utils.isNumber(val, min, max);
   return { res: val >= min && val <= max};
 };
 
@@ -75,4 +62,16 @@ const asyncOperateHandler = async (
   const res = await asyncFunc(params);
   asyncOperate.ret = res;
   return operate[subOperateType](res, ...values);
+};
+
+export const operate = {
+  "===": equal,
+  "<": isLessThan,
+  ">": isGreatThan,
+  inRange,
+  "time<": lessThanNMinutes,
+  "time>": greatThanNMinutes,
+  startsWith,
+  jqlb,
+  async: asyncOperateHandler,
 };
