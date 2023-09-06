@@ -98,8 +98,7 @@ function observe(obj, property, cb) {
     });
   }
 }
-
-export function handleModulesValidator() {
+function handleModulesValidator() {
   const url = window.location.href;
 
   const matchKeys = Object.keys(modules).filter((key) => url.includes(key));
@@ -117,7 +116,6 @@ export function handleModulesValidator() {
             if (nodeList[i]) {
               observe(nodeList[i], "value", () => {
                 const values = handleSelectorsValues({
-                  operateType: opera.operateType,
                   values: opera.values,
                   nodeList,
                 });
