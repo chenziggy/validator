@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:all": "jest --watchAll",
-    "build": "npx spack",
-    "build:vite":"vite build"
+    "build":"vite build",
+    "build:spack": "npx spack"
   },
   "keywords": [],
   "author": "",
