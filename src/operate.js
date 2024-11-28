@@ -60,6 +60,10 @@ const asyncOperateHandler = async (
   values
 ) => {
   const res = await asyncFunc(params);
+  console.log("🚀 ~ res:", res)
+  if (res === true) {
+    return {res: true}
+  }
   asyncOperate.ret = res;
   return operate[subOperateType](res, ...values);
 };

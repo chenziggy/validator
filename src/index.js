@@ -63,7 +63,7 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
         throw valid;
       }
     } catch (error) {
-      
+      console.log(errorMsg)
       message.setOption({
         message: 
         error.data ?
@@ -74,12 +74,15 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
   }
 
   const asyncQuery = (params) => {
-    return Promise.resolve(params);
+    return fetch(params.url, {
+      method: params.method,
+      params: params.data,
+    })
   };
 
   function observe(obj, property, cb) {
     const __proto__ = Object.getPrototypeOf(obj);
-    if (__proto__.hasOwnProperty(property)) {
+      if (__proto__.hasOwnProperty(property)) {
       let descriptor = Object.getOwnPropertyDescriptor(__proto__, property);
       Object.defineProperty(obj, property, {
         get: function () {
@@ -121,9 +124,9 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
                     values,
                     errorMsg: opera.errorMsg,
                     successMsg: opera.successMsg,
-                    asyncOperate: Object.assign({}, opera.asyncOperate, {
+                    asyncOperate: Object.assign({}, {
                       asyncFunc: asyncQuery,
-                    }),
+                    }, opera.asyncOperate),
                   })
                 })
               }
@@ -134,5 +137,5 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
     }
   }
 
-  setTimeout(handleModulesValidator, 4000);
+  setTimeout(handleModulesValidator, 6000);
 })();

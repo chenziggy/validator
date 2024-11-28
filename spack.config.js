@@ -26,6 +26,6 @@ module.exports = config({
         }
       }
     },
-      "minify": true
+      "minify": false
   }
 });
