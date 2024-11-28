@@ -16,7 +16,7 @@ export const modules = {
     {
       operateType: "time<",
       selectors: ["#enter_receive_time","#sablsj"],
-      values: [null, null, 1440],
+      values: [null, null, 180],
       errorMsg: "受案时间距离报警时间",
     },
   ]
