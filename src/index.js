@@ -63,11 +63,11 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
         throw valid;
       }
     } catch (error) {
-      console.log(errorMsg)
+      console.log("🚀 ~ error:", asyncOperate, error.data, operateType, errorMsg)
       message.setOption({
         message: 
         error.data ?
-          formatErrorMsg({operateType, errorMsg, data: error.data})
+          formatErrorMsg({operateType : (asyncOperate &&  asyncOperate.operateType) ? asyncOperate.operateType : operateType, errorMsg, data: error.data})
           : errorMsg
       })
     }
@@ -137,5 +137,5 @@ import { formatErrorMsg, handleSelectorsValues } from './utils'
     }
   }
 
-  setTimeout(handleModulesValidator, 6000);
+  setTimeout(handleModulesValidator, 4000);
 })();

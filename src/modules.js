@@ -38,10 +38,10 @@ export const modules = {
             console.log(info)
             const {jqxx} = await info.json()
             console.log(jqxx.cjcljg)
-            if (jqxx && jqxx.cjcljg &&(jqxx.cjcljg === '01' || jqxx.cjcljg === '02')) {
+            if (jqxx && jqxx.cjcljg &&(jqxx.cjcljg === '01')) {
               const formData = new URLSearchParams();
               formData.append('jq_xxzjbh', xxzjbh);
-              const res = await fetch(`${pathConfig.basePath}/jqLadj/queryByJq_xxzjbh`, {
+              const res = await fetch(`${pathConfig.basePath}/jqSadj/queryByJq_xxzjbh`, {
                 method: "POST",
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
@@ -59,7 +59,7 @@ export const modules = {
        
         operateType: "time<",
       },
-      errorMsg: "审核时间距离报警时间超过一天"
+      errorMsg: "请重新选择审核时间，距离报警时间超过一天，"
     }
   ],
 };
